@@ -11,6 +11,6 @@ server.use("/", router);
 server.use(notFound);
 server.use(serverError);
 
-server.listen(3000, () => {
+server.listen(3300, () => {
     console.log("SERVER ONLINE");
 });
