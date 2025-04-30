@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
-import { createOrder, deleteOrder } from "../services/order";
+import { createItem, createOrder, deleteOrder } from "../services/order";
+import { addItemSchema } from "../schemas/order";
 
 export const registerOrder: RequestHandler = async (req, res) => {
     const { table, name } = req.body;
@@ -11,7 +12,7 @@ export const registerOrder: RequestHandler = async (req, res) => {
     const order = await createOrder(table, name);
 
     res.json({ order });
-} 
+};
 
 export const removeOrder: RequestHandler = async (req, res) => {
     const order_id = req.query.order_id as string;
@@ -23,4 +24,18 @@ export const removeOrder: RequestHandler = async (req, res) => {
     const order = await deleteOrder(order_id);
 
     res.json({ order });
-}
+};
+
+export const registerItem: RequestHandler = async (req, res) => {
+    const safeData = addItemSchema.safeParse(req.body);
+    if(!safeData.success) {
+        res.json({ error: safeData.error.flatten().fieldErrors });
+        return;
+    }
+
+    const { order_id, product_id, amount } = req.body;
+
+    const item = await createItem(order_id, product_id, amount);
+
+    res.json({ item });
+};

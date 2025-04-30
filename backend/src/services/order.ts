@@ -23,3 +23,14 @@ export const deleteOrder = async (order_id: string) => {
         return {error: "Order not found"};
     }
 };
+
+export const createItem = async (order_id: string, product_id: string, amount: number) => {
+    const order = await prismaClient.item.create({
+        data: {
+            order_id,
+            product_id,
+            amount
+        }
+    });
+    return order;
+}
