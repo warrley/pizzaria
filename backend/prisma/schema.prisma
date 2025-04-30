@@ -33,7 +33,7 @@ model Product {
   id          String    @id @default(uuid())
   name        String
   price       String
-  decription  String
+  description String
   banner      String
   created_at  DateTime? @default(now())
   update_at   DateTime? @default(now())

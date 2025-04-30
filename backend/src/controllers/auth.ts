@@ -1,5 +1,5 @@
 import { RequestHandler, Response } from "express";
-import { createUserDb, getUserByEmail } from "../services/user";
+import { createUser, getUserByEmail } from "../services/user";
 import { loginUserSchema, registerUserSchema } from "../schemas/auth";
 import bcrypt from "bcrypt";
 import { createToken } from "../blib/jwt";
@@ -22,7 +22,7 @@ export const register: RequestHandler = async (req, res) => {
         return;
     }
 
-    const user = await createUserDb(name, email, password);
+    const user = await createUser(name, email, password);
 
     res.json(user)
 };
