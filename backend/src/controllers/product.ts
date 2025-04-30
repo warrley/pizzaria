@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { createProduct } from "../services/product";
+import { createProduct, filterByCategory } from "../services/product";
 import { registerProductSchema } from "../schemas/product";
 
 export const registerProduct: RequestHandler = async(req, res) => {
@@ -22,4 +22,16 @@ export const registerProduct: RequestHandler = async(req, res) => {
     const product = await createProduct(name, price, description, banner, category_id );
 
     res.json({ product });
+}
+
+export const listProductCategory: RequestHandler = async (req, res) => {
+    const category_id = req.query.category_id;
+    if(!category_id) {
+        res.json({ error: "Category id is required" });
+        return;
+    };
+
+    const products = await filterByCategory(category_id as string);
+
+    res.json({ products });
 }

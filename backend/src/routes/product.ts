@@ -9,3 +9,4 @@ export const productRouter = express.Router();
 const upload = multer(uploadConfig("./tmp"));
 
 productRouter.post("/", authenticaded, upload.single("file"), productController.registerProduct);
+productRouter.get("/", authenticaded, productController.listProductCategory);
