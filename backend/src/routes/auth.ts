@@ -4,7 +4,7 @@ import * as UserController from "../controllers/auth"
 
 export const authRouter = Router();
 
-authRouter.post("/auth/register", UserController.register);
-authRouter.post("/auth/login", UserController.login);
+authRouter.post("/register", UserController.register);
+authRouter.post("/login", UserController.login);
 authRouter.get("/info", authenticaded, UserController.info);
 
