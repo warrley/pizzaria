@@ -25,12 +25,29 @@ export const deleteOrder = async (order_id: string) => {
 };
 
 export const createItem = async (order_id: string, product_id: string, amount: number) => {
-    const order = await prismaClient.item.create({
-        data: {
-            order_id,
-            product_id,
-            amount
-        }
-    });
-    return order;
-}
+    try{
+        const order = await prismaClient.item.create({
+            data: {
+                order_id,
+                product_id,
+                amount
+            }
+        });
+        return order;
+    } catch {
+        return {error: "Order invalid"};
+    };
+};
+
+export const deleteItem = async (id: string) => {
+    try{
+        const order = await prismaClient.item.delete({
+            where: {
+                id
+            }
+        });
+        return order;
+    } catch {
+        return {error: "Invalid item"};
+    };
+};

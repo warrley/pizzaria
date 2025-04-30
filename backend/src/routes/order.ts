@@ -7,3 +7,4 @@ export const orderRouter = express.Router();
 orderRouter.post("/", authenticaded, orderController.registerOrder);
 orderRouter.delete("/", authenticaded, orderController.removeOrder);
 orderRouter.post("/add", authenticaded, orderController.registerItem);
+orderRouter.delete("/remove", authenticaded, orderController.removeItem);
