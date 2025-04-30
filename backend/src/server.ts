@@ -1,13 +1,16 @@
 import express from "express";
-import { router } from "./routes";
 import { notFound, serverError } from "./errors/handleErrors";
 import cors from 'cors'
+import { authRouter } from "./routes/auth";
+import { mainRouter } from "./routes/main";
 
 const server = express();
 server.use(express.json());
 server.use(cors());
 
-server.use("/", router);
+server.use("/", mainRouter);
+server.use("/auth", authRouter);
+
 server.use(notFound);
 server.use(serverError);
 
