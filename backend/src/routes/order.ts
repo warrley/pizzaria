@@ -5,3 +5,4 @@ import { authenticaded } from "../middleware/authenticaded";
 export const orderRouter = express.Router();
 
 orderRouter.post("/", authenticaded, orderController.registerOrder);
+orderRouter.delete("/", authenticaded, orderController.removeOrder)
