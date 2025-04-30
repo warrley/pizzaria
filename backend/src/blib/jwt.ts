@@ -6,6 +6,13 @@ type User = {
     id: string
 }
 
+type TokenPayload = {
+    name: string,
+    email: string,
+    iat: number,
+    exp: number
+}
+
 export const createToken = async (user: User) => {
     const token = jwt.sign(
         {
@@ -21,5 +28,5 @@ export const createToken = async (user: User) => {
 export const verifyToken = async (token: string) => {
     const tokenJWT = jwt.verify(token, process.env.JWT_SECRET as string);
 
-    return tokenJWT;
+    return tokenJWT as TokenPayload;
 };
