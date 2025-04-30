@@ -6,6 +6,7 @@ import { authRouter } from "./routes/auth";
 import { mainRouter } from "./routes/main";
 import { categoryRouter } from "./routes/category";
 import { productRouter } from "./routes/product";
+import { orderRouter } from "./routes/order";
 
 const server = express();
 server.use(express.json());
@@ -15,6 +16,7 @@ server.use("/", mainRouter);
 server.use("/auth", authRouter);
 server.use("/category", categoryRouter);
 server.use("/product", productRouter);
+server.use("/order", orderRouter);
 
 server.use("/files", express.static(path.resolve(__dirname, "..", "tmp")));
 
