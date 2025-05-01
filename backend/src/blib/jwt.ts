@@ -20,7 +20,7 @@ export const createToken = async (user: User) => {
             email: user.email
         },
         process.env.JWT_SECRET as string,
-        { expiresIn: '2h'   }
+        { expiresIn: '2h' }
     );
     return token;
 };

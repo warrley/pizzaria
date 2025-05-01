@@ -1,3 +1,4 @@
+import e from "express";
 import prismaClient from "../prisma"
 
 export const createOrder = async(table: number, name: string) => {
@@ -51,3 +52,30 @@ export const deleteItem = async (id: string) => {
         return {error: "Invalid item"};
     };
 };
+
+export const editStatusOrder = async (order_id: string) => {
+    const order = await prismaClient.order.update({
+        where: {
+            id: order_id
+        },
+        data: {
+            draft: false
+        }
+    });
+
+    return order;
+};
+
+export const getOrders = async () => {
+    const order = await prismaClient.order.findMany({
+        where: {
+            draft: false,
+            status: false
+        },
+        orderBy: {
+            created_at: "desc"
+        }
+    });
+
+    return order;
+}

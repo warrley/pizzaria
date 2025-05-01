@@ -8,3 +8,5 @@ orderRouter.post("/", authenticaded, orderController.registerOrder);
 orderRouter.delete("/", authenticaded, orderController.removeOrder);
 orderRouter.post("/add", authenticaded, orderController.registerItem);
 orderRouter.delete("/remove", authenticaded, orderController.removeItem);
+orderRouter.put("/send", authenticaded, orderController.sendOrder);
+orderRouter.get("/list", authenticaded, orderController.listOrders);
