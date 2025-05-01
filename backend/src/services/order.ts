@@ -92,3 +92,16 @@ export const getOrderDetail = async (order_id: string) => {
 
     return orders;
 };
+
+export const doneOrder = async (order_id: string) => {
+    const order = await prismaClient.order.update({
+        where: {
+            id: order_id
+        },
+        data: {
+            status: true
+        }
+    });
+
+    return order;
+};

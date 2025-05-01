@@ -1,5 +1,5 @@
-import { RequestHandler } from "express";
-import { createItem, createOrder, deleteItem, deleteOrder, editStatusOrder, getOrderDetail, getOrders } from "../services/order";
+import { RequestHandler, RequestParamHandler } from "express";
+import { createItem, createOrder, deleteItem, deleteOrder, doneOrder, editStatusOrder, getOrderDetail, getOrders } from "../services/order";
 import { addItemSchema } from "../schemas/order";
 
 export const registerOrder: RequestHandler = async (req, res) => {
@@ -78,4 +78,16 @@ export const detailOrder: RequestHandler = async (req, res) => {
     const orders = await getOrderDetail(order_id);
 
     res.json({ orders });
-}
+};
+
+export const finishOrder: RequestHandler = async (req, res) => {
+    const { order_id } = req.body;
+    if(!order_id) {
+        res.json({ error: "Order id is required" });
+        return;
+    };
+
+    const finishOrder = await doneOrder(order_id);
+
+    res.json({ finishOrder });
+};
