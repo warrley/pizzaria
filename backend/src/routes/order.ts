@@ -10,3 +10,4 @@ orderRouter.post("/add", authenticaded, orderController.registerItem);
 orderRouter.delete("/remove", authenticaded, orderController.removeItem);
 orderRouter.put("/send", authenticaded, orderController.sendOrder);
 orderRouter.get("/list", authenticaded, orderController.listOrders);
+orderRouter.get("/detail", authenticaded, orderController.detailOrder);

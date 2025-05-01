@@ -1,4 +1,3 @@
-import e from "express";
 import prismaClient from "../prisma"
 
 export const createOrder = async(table: number, name: string) => {
@@ -78,4 +77,18 @@ export const getOrders = async () => {
     });
 
     return order;
-}
+};
+
+export const getOrderDetail = async (order_id: string) => {
+    const orders  = await prismaClient.item.findMany({
+        where: {
+            order_id
+        },
+        include: {
+            product: true,
+            order: true
+        }
+    });
+
+    return orders;
+};
