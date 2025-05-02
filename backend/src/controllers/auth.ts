@@ -1,4 +1,4 @@
-import { RequestHandler, Response } from "express";
+import { RequestHandler } from "express";
 import { createUser, getUserByEmail } from "../services/user";
 import { loginUserSchema, registerUserSchema } from "../schemas/auth";
 import bcrypt from "bcrypt";
