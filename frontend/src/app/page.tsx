@@ -15,12 +15,16 @@ export default function Home() {
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
 
-    let data = {
-      email: email,
-      password: password
+    if(email.length === 0 && password.length === 0) {
+      alert("Preencha todos os campos");
+      return;
     }
 
-    await signIn(data);
+    setLoading(true);
+    
+    await signIn({ email, password });
+
+    setLoading(false);
   }
 
   return(
@@ -43,7 +47,7 @@ export default function Home() {
             />
             <Button
               type="submit"
-              loading={false}>
+              loading={loading}>
                 Acess
             </Button>
           </form>
